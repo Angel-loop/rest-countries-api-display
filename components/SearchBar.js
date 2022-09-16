@@ -5,28 +5,26 @@ import { useRouter } from "next/router"
 export default function SearchBar() {
 
 	const [input, setInput] = useState('')
-
   const router = useRouter()
 
+  //changes state on every key stroke
 	const handleChange = (e)=>{
 		setInput(e.target.value)
 
 	}
-
+  //pushes user input to the url as query string
 	const handleClick = (e)=>{
 		e.preventDefault()
-		setInput(e.target.value)
-		console.log(input)
+    router.push(`/search?country=${input}`)
 	}
-
+  //Navigates to one of the continent pages based on user input
   const handleNav = (path)=>{
     router.push(path)
   }
 
-
+  
   return (
     <div className="flex p-12 justify-between">
-
       <form className="w-1/3 h-12 px-4 py-1 rounded-md bg-dark-blue text-white shadow-dark-blue-lm shadow-md flex items-center">
 
           <button className="mx-2" type="submit" onClick={handleClick}>

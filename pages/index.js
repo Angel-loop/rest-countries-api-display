@@ -16,7 +16,7 @@ export default function Home({countries}) {
 
 		{countries.map(country => {
 			return <Card 
-			key={country.id}
+			key={country.name.common}
 			{...country}/>
 		})}
 

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import '../styles/globals.css'
+import Link from 'next/link'
 
 
 function MyApp({ Component, pageProps }) {
@@ -13,9 +14,12 @@ function MyApp({ Component, pageProps }) {
 		</Head>
 
 		<nav className='flex flex-row justify-between p-8 bg-dark-blue'>
-			<p className='font-semibold text-white'>Where in the world?</p>
+		<Link href='/'>
+			<a className='font-semibold text-white text-xl'>HomePage</a>
+		</Link>
 			<p className='font-semibold text-white'>Dark Mode</p>
 		</nav>
+
 		<Component {...pageProps} />
 	</>
 
