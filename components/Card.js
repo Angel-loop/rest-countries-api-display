@@ -1,8 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function Card(props) {
+
+  const router = useRouter()
 
   const formatter = Intl.NumberFormat('en', {notation: "compact"})
 

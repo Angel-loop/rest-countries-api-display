@@ -24,12 +24,14 @@ function index({data}) {
   let display = <div>It seems you may have misspelled the country name. Try again!</div>
 
   //if the server responds with a 200 status sets display to render the countries
-  if(!data.status){
+  
+  if(!data.message){
     display = data.map(country => {
       return <Card 
       key={country.name.common}
       {...country}/>
     })
+  
   }
 
   return (
@@ -58,16 +60,30 @@ function index({data}) {
 
 export default index
 
+function filterQuery(obj, param){
+  const name = obj.name.common
+
+  if(name.toLowerCase().includes(param)){
+    return true
+  }else{return false}
+}
+
 
 //Server code
 export async function getServerSideProps(context){
 
   //reads the query string from the url
-  const countries = context.query.country
+  const name = context.query.country
 
-  const res = await fetch(`https://restcountries.com/v3.1/name/${countries}`)
-  const data = await res.json()
+  const req = await fetch(`https://restcountries.com/v3.1/name/${name}`)
+  const res = await req.json()
  
-  return{ props: {data}}
+  if(!res.status){
+    const data = res.filter(country => filterQuery(country, name))
+    return{ props: {data}}
+  }else {
+    const data = res
+    return{ props: {data}}
+  }
   
 }
