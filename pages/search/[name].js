@@ -1,23 +1,48 @@
 import { data } from 'autoprefixer'
+import { Main } from 'next/document'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
 
 function country({country}) {
+
   const data = country[0]
   //Gets the native Name
   const value = Object.keys(data.languages)
   const language = value[value.length - 1]
   const nativeName = data.name.nativeName
+  const nativeLanguage = data.languages
+
+  const currencyName = Object.keys(data.currencies)
+  const currency = data.currencies
+
+  const timezones = data.timezones  
 
   const formatter = Intl.NumberFormat('en')
 
   const router = useRouter()
 
 
+
+  async function handleClick(countryCode){
+    const req = await fetch(`https://restcountries.com/v3.1/alpha?codes=${countryCode}`)
+    const [res] = await req.json()
+
+
+    if(!res.message){
+      const name = res.name.common
+      router.push(`/search?country=${name.toLowerCase()}`)
+
+
+    }
+
+  }
+  
+
+
   return (
-    <div className='bg-very-dark-blue h-full text-white p-16'>
+    <div className='bg-very-dark-blue text-white p-8 md:p-16'>
       <button onClick={() => router.back()}>
         <a href='/' className=' flex place-content-center place-items-center mb-16 bg-dark-blue rounded-md w-32 p-2 shadow-dark-blue-lm shadow-md transition ease-in-out hover:scale-110'>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width={15} height={15} className='fill-white mr-2'>
@@ -27,12 +52,12 @@ function country({country}) {
         </a>
       </button>  
 
-      <div className='grid grid-cols-2 gap-24'>
+      <main className='flex flex-col gap-12 md:grid md:grid-cols-2 md:gap-24'>
 
         <img src={data.flags.svg} alt={`Flag of ${data.name.common}`}></img>
         
-        <div className='grid grid-cols-2'>
-          <div className=''>
+        <div className='md:grid md:grid-cols-2 md:grid-rows-3'>
+          <section className='flex flex-col gap-2'>
             <h1 className='text-4xl font-extrabold mb-8'>{data.name.common}</h1>
             <p className='font-semibold mb-2'>Native Name: <span className='font-extralight'>
               {nativeName[language].official}
@@ -46,14 +71,41 @@ function country({country}) {
             <p className='font-semibold mb-2'>Sub Region: <span className='font-extralight'>
               {data.subregion}
             </span></p>
-            <p className='font-semibold '>Capital: <span className='font-extralight'>
+            <p className='font-semibold mb-4'>Capital: <span className='font-extralight'>
               {data.capital}
             </span></p>
-          </div>
+          </section>
+
+          <section className='flex flex-col gap-2 md:mt-28 '>
+            <p className='font-semibold mb-2'>Currencies: <span className='font-extralight'>
+                  {currency[currencyName].name}
+              </span>
+            </p>
+            <p className='font-semibold mb-2'> Languages: 
+              <span className='font-extralight'> {nativeLanguage[language]}</span>
+            </p>
+            <p className='font-semibold mb-2'> Timezones: 
+              <span className='font-extralight'>{timezones.map(item => item)}</span>
+            </p>
+            
+          </section>
+
+          <section className=''>
+            <p className='text-1xl font-bold mb-4'>Border countries: </p>
+            <div className='flex flex-row flex-wrap gap-8 space-x-4'>
+              {data.borders && data.borders.map((item, index) =>{
+                return (
+                  <button onClick={() => handleClick(item)} key={index} className='bg-dark-blue transition ease-in-out hover:scale-110 duration-500 px-8 py-1'>
+                    <p className='font-semibold text-base'>{item}</p>
+                  </button>
+                )
+              } )}
+            </div>
+          </section>
 
         </div>
 
-      </div>
+      </main>
 
     </div>
   )
@@ -70,6 +122,7 @@ export async function getStaticPaths() {
   const res = await fetch('https://restcountries.com/v3.1/all')
   const data = await res.json()
 
+  
   const paths = data.map(country => {
     return {
       params: {name: country.name.common}
@@ -83,13 +136,16 @@ export async function getStaticPaths() {
   }
 }
 
+
+
 export async function getStaticProps(context){
 
   const name = context.params.name
   
-  const res = await fetch(`https://restcountries.com/v3.1/name/${name.toLowerCase()}`)
-  const data = await res.json()
+  const req = await fetch(`https://restcountries.com/v3.1/name/${name.toLowerCase()}`)
+  const res = await req.json()
 
+  const data = res.filter(country => country.name.common === name)
 
   return{
     props : {country : data}

@@ -11,7 +11,7 @@ function index({data}) {
   //pushes user input to the url as query string
   const handleClick = (e)=>{
 		e.preventDefault()
-    router.push(`/search?country=${input}`)
+    router.push(`/search?country=${input.toLowerCase()}`)
 	}
 
   //changes state on every key stroke
@@ -36,7 +36,6 @@ function index({data}) {
 
   return (
     <div  className="bg-very-dark-blue">
-
 
       <div className='p-12'>
         <form className=" w-1/3 h-12 px-4 py-1 rounded-md bg-dark-blue text-white shadow-dark-blue-lm shadow-md flex items-center">
@@ -78,7 +77,7 @@ export async function getServerSideProps(context){
   const req = await fetch(`https://restcountries.com/v3.1/name/${name}`)
   const res = await req.json()
  
-  if(!res.status){
+  if(!res.message){
     const data = res.filter(country => filterQuery(country, name))
     return{ props: {data}}
   }else {

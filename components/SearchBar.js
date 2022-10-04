@@ -15,7 +15,7 @@ export default function SearchBar() {
   //pushes user input to the url as query string
 	const handleClick = (e)=>{
 		e.preventDefault()
-    router.push(`/search?country=${input}`)
+    router.push(`/search?country=${input.toLowerCase()}`)
 	}
   //Navigates to one of the continent pages based on user input
   const handleNav = (path)=>{
@@ -24,8 +24,8 @@ export default function SearchBar() {
 
   
   return (
-    <div className="flex p-12 justify-between">
-      <form className="w-1/3 h-12 px-4 py-1 rounded-md bg-dark-blue text-white shadow-dark-blue-lm shadow-md flex items-center">
+    <div className=" p-12 grid-cols-1 gap-12 md:flex md:justify-between md:flex-row">
+      <form className="w-full md:w-1/3 h-12 px-4 py-1 rounded-md bg-dark-blue text-white shadow-dark-blue-lm shadow-md flex items-center mb-4">
 
           <button className="mx-2" type="submit" onClick={handleClick}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={20} height={20} className="fill-white">
@@ -38,7 +38,7 @@ export default function SearchBar() {
       </form>
 
       <Menu as="div" className="relative inline-block text-left text-white bg-dark-blue
-      rounded-md  shadow-dark-blue-lm shadow-md">
+      rounded-md shadow-dark-blue-lm shadow-md w-full md:w-1/6 md:h-12">
       <div>
         <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 text-center">
           Filter By Region 

@@ -1,10 +1,14 @@
 import Head from 'next/head'
 import '../styles/globals.css'
 import Link from 'next/link'
+import { useState } from 'react'
 
 
 function MyApp({ Component, pageProps }) {
-  return (
+  
+	const [darkMode, setDarkMode] = useState(true)
+	
+	return (
   
 	<>
 		<Head>
