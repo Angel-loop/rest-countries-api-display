@@ -1,12 +1,14 @@
 import Card from "../../components/Card"
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { useThemeContext } from "../../context/theme"
 
 function index({data}) {
 
   const [input, setInput] = useState('')
   const router = useRouter()
 
+  const [theme, setTheme] = useThemeContext()
 
   //pushes user input to the url as query string
   const handleClick = (e)=>{
@@ -35,22 +37,22 @@ function index({data}) {
   }
 
   return (
-    <div  className="bg-very-dark-blue">
+    <div  className={ theme ?  'dark h-full' : 'h-full'}>
+      <div className=" bg-dark-gray dark:bg-very-dark-blue h-full">
+        <div className='p-12'>
+          <form className=" w-1/3 h-12 px-4 py-1 rounded-md bg-white dark:bg-dark-blue text-dark-blue-lm dark:text-white dark:shadow-dark-blue-lm shadow-md flex items-center">
+            <button className="mx-2" type="submit" onClick={handleClick}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={20} height={20} className="dark:fill-white">
+            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/>
+            </svg>
+            </button>
+            <input type='text' placeholder="Search" className="bg-white dark:bg-dark-blue w-full" onChange={handleChange}></input>
+          </form>
+        </div>
 
-      <div className='p-12'>
-        <form className=" w-1/3 h-12 px-4 py-1 rounded-md bg-dark-blue text-white shadow-dark-blue-lm shadow-md flex items-center">
-          <button className="mx-2" type="submit" onClick={handleClick}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={20} height={20} className="fill-white">
-          <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/>
-          </svg>
-          </button>
-          <input type='text' placeholder="Search" className="bg-dark-blue w-full" onChange={handleChange}></input>
-        </form>
-      </div>
-	
-		  <div className="grid grid-cols-4 gap-14 p-12">
-
-          {display}
+        <div className="grid grid-cols-4 gap-14 p-12">
+            {display}
+        </div>
       </div>
 
 		</div>

@@ -1,23 +1,23 @@
-import React from 'react'
 import SearchBar from '../components/SearchBar'
 import Card from '../components/Card'
+import { useThemeContext } from '../context/theme'
 
 export default function america({countries}) {
+
+  const [theme, setTheme] = useThemeContext()
+
   return (
-    <div  className="bg-very-dark-blue">
-		
-      <SearchBar/>
-
-      <div className="grid grid-cols-4 gap-14 p-12">
-
-        {countries.map(country => {
-          return <Card 
-           key={country.id}
-           {...country}/>
-        })}
-
+    <div className={theme ? 'dark' : 'light'}>
+      <div  className="bg-dark-gray dark:bg-very-dark-blue">
+        <SearchBar/>
+        <div className="grid grid-cols-4 gap-14 p-12">
+          {countries.map(country => {
+            return <Card 
+            key={country.id}
+            {...country}/>
+          })}
+        </div>
       </div>
-
     </div>
   )
 }

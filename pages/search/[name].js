@@ -3,6 +3,7 @@ import { Main } from 'next/document'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { useThemeContext } from '../../context/theme'
 
 
 function country({country}) {
@@ -17,13 +18,11 @@ function country({country}) {
   const currencyName = Object.keys(data.currencies)
   const currency = data.currencies
 
-  const timezones = data.timezones  
-
   const formatter = Intl.NumberFormat('en')
 
   const router = useRouter()
 
-
+  const [theme, setTheme] = useThemeContext()
 
   async function handleClick(countryCode){
     const req = await fetch(`https://restcountries.com/v3.1/alpha?codes=${countryCode}`)
@@ -33,8 +32,6 @@ function country({country}) {
     if(!res.message){
       const name = res.name.common
       router.push(`/search?country=${name.toLowerCase()}`)
-
-
     }
 
   }
@@ -42,71 +39,74 @@ function country({country}) {
 
 
   return (
-    <div className='bg-very-dark-blue text-white p-8 md:p-16'>
-      <button onClick={() => router.back()}>
-        <a href='/' className=' flex place-content-center place-items-center mb-16 bg-dark-blue rounded-md w-32 p-2 shadow-dark-blue-lm shadow-md transition ease-in-out hover:scale-110'>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width={15} height={15} className='fill-white mr-2'>
-            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
-          </svg>
-          Back
-        </a>
-      </button>  
+    <div className={theme ? 'dark' : ''}>
 
-      <main className='flex flex-col gap-12 md:grid md:grid-cols-2 md:gap-24'>
+      <div className=' bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white p-8 md:p-16'>
+        <button onClick={() => router.back()}>
+          <a href='/' className=' flex place-content-center place-items-center mb-16 bg-white dark:bg-dark-blue rounded-md w-32 p-2 dark:shadow-dark-blue-lm shadow-md transition ease-in-out hover:scale-110'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width={15} height={15} className='dark:fill-white mr-2'>
+              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+            </svg>
+            Back
+          </a>
+        </button>  
 
-        <img src={data.flags.svg} alt={`Flag of ${data.name.common}`}></img>
-        
-        <div className='md:grid md:grid-cols-2 md:grid-rows-3'>
-          <section className='flex flex-col gap-2'>
-            <h1 className='text-4xl font-extrabold mb-8'>{data.name.common}</h1>
-            <p className='font-semibold mb-2'>Native Name: <span className='font-extralight'>
-              {nativeName[language].official}
-            </span></p>
-            <p className='font-semibold mb-2'>Population: <span className='font-extralight'>
-              {formatter.format(data.population)}
-            </span></p>
-            <p className='font-semibold mb-2'>Region: <span className='font-extralight'>
-              {data.region}
-            </span></p>
-            <p className='font-semibold mb-2'>Sub Region: <span className='font-extralight'>
-              {data.subregion}
-            </span></p>
-            <p className='font-semibold mb-4'>Capital: <span className='font-extralight'>
-              {data.capital}
-            </span></p>
-          </section>
+        <main className='flex flex-col gap-12 md:grid md:grid-cols-2 md:gap-24'>
 
-          <section className='flex flex-col gap-2 md:mt-28 '>
-            <p className='font-semibold mb-2'>Currencies: <span className='font-extralight'>
-                  {currency[currencyName].name}
-              </span>
-            </p>
-            <p className='font-semibold mb-2'> Languages: 
-              <span className='font-extralight'> {nativeLanguage[language]}</span>
-            </p>
-            <p className='font-semibold mb-2'> Timezones: 
-              <span className='font-extralight'>{timezones.map(item => item)}</span>
-            </p>
-            
-          </section>
+          <img src={data.flags.svg} alt={`Flag of ${data.name.common}`}></img>
+          
+          <div className='md:grid md:grid-cols-2 md:grid-rows-3'>
+            <section className='flex flex-col gap-2'>
+              <h1 className='text-4xl font-extrabold mb-8'>{data.name.common}</h1>
+              <p className='font-semibold mb-2'>Native Name: <span className='font-extralight'>
+                {nativeName[language].official}
+              </span></p>
+              <p className='font-semibold mb-2'>Population: <span className='font-extralight'>
+                {formatter.format(data.population)}
+              </span></p>
+              <p className='font-semibold mb-2'>Region: <span className='font-extralight'>
+                {data.region}
+              </span></p>
+              <p className='font-semibold mb-2'>Sub Region: <span className='font-extralight'>
+                {data.subregion}
+              </span></p>
+              <p className='font-semibold mb-4'>Capital: <span className='font-extralight'>
+                {data.capital}
+              </span></p>
+            </section>
 
-          <section className=''>
-            <p className='text-1xl font-bold mb-4'>Border countries: </p>
-            <div className='flex flex-row flex-wrap gap-8 space-x-4'>
-              {data.borders && data.borders.map((item, index) =>{
-                return (
-                  <button onClick={() => handleClick(item)} key={index} className='bg-dark-blue transition ease-in-out hover:scale-110 duration-500 px-8 py-1'>
-                    <p className='font-semibold text-base'>{item}</p>
-                  </button>
-                )
-              } )}
-            </div>
-          </section>
+            <section className='flex flex-col gap-2 md:mt-28 '>
+              <p className='font-semibold mb-2'>Currencies: <span className='font-extralight'>
+                    {currency[currencyName].name}
+                </span>
+              </p>
+              <p className='font-semibold mb-2'> Languages: 
+                <span className='font-extralight'> {nativeLanguage[language]}</span>
+              </p>
+              <p className='font-semibold mb-2'> Top level domain: 
+                <span className='font-extralight'> {data.tld}</span>
+              </p>
+              
+            </section>
 
-        </div>
+            <section className=''>
+              <p className='text-1xl font-bold mb-4'>Border countries: </p>
+              <div className='grid grid-cols-2 md:grid-cols-4 w-max gap-4'>
+                {data.borders && data.borders.map((item, index) =>{
+                  return (
+                    <button onClick={() => handleClick(item)} key={index} className='bg-white dark:bg-dark-blue transition ease-in-out hover:scale-110 duration-500 px-8 py-1'>
+                      <p className='font-semibold text-base'>{item}</p>
+                    </button>
+                  )
+                } )}
+              </div>
+            </section>
 
-      </main>
+          </div>
 
+        </main>
+
+      </div>
     </div>
   )
 }

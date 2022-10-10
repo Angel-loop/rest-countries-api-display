@@ -11,16 +11,16 @@ function Card(props) {
 
   return (
     <Link href={`/search/${props.name.common}`}>
-        <div className=' rounded-lg flex flex-col max-w-xs bg-dark-blue transition ease-in-out hover:scale-110 duration-500 cursor-pointer'>
+        <div className=' rounded-lg flex flex-col max-w-xs bg-white dark:bg-dark-blue transition ease-in-out hover:scale-110 duration-500 cursor-pointer'>
           
-          <img src={props.flags.svg} alt={`Flag of ${props.name.common}`} ></img>
+          <Image src={props.flags.png} alt={`Flag of ${props.name.common}`} width={240} height={160}></Image>
 
           <div className='p-4'>
 
-            <h2 className='text-white'>{props.name.common}</h2>
-            <p className='text-white'>Population: {formatter.format(props.population)}</p>
-            <p className='text-white'>Region: {props.region}</p>
-            <p className='text-white'>Capital: {props.capital}</p>
+            <h2 className='text-dark-blue-lm dark:text-white'>{props.name.common}</h2>
+            <p className='text-dark-blue-lm dark:text-white'>Population: {formatter.format(props.population)}</p>
+            <p className='text-dark-blue-lm dark:text-white'>Region: {props.region}</p>
+            <p className='text-dark-blue-lm dark:text-white'>Capital: {props.capital}</p>
           </div>
         
         </div>

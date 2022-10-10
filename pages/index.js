@@ -1,27 +1,26 @@
 import Card from "../components/Card"
 import SearchBar from "../components/SearchBar"
+import { useThemeContext } from "../context/theme"
 
 
 
 export default function Home({countries}) {
 	
-		
+	const [theme, setTheme] = useThemeContext()	
+
 	return (
-	
-	<div  className="bg-very-dark-blue">
-
-		<SearchBar/>
-	
-		<div className="grid grid-cols-1 place-items-center md:grid-cols-4 gap-14 p-12">
-
-		{countries.map(country => {
-			return <Card 
-			key={country.name.common}
-			{...country}/>
-		})}
-
+	<div className={theme ? 'dark' : 'light'}>
+		<div  className=" bg-dark-gray dark:bg-very-dark-blue">
+			<SearchBar/>
+			<div className="grid grid-cols-1 place-items-center md:grid-cols-4 gap-14 p-12">
+			{countries.map(country => {
+				return <Card 
+				key={country.name.common}
+				{...country}/>
+			})}
+			</div>
+		
 		</div>
-	
 	</div>
   )
 }
