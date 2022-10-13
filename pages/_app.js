@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import '../styles/globals.css'
-import { ThemeProvider, useThemeContext } from '../context/theme'
+import { ThemeProvider} from '../context/theme'
 import NavBar from '../components/NavBar'
+import Loader from '../components/Loader'
+import { LoadingProvider } from '../context/load'
 
 function MyApp({ Component, pageProps }) {
 	
@@ -14,8 +16,11 @@ function MyApp({ Component, pageProps }) {
 			<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap"/> 
 		</Head>
 
-		<NavBar/>
-		<Component {...pageProps} />
+		<LoadingProvider>
+			<NavBar/>
+			<Loader/>
+			<Component {...pageProps} />
+		</LoadingProvider>
 
 	</ThemeProvider>
 

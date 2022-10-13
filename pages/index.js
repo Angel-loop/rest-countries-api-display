@@ -9,7 +9,7 @@ export default function Home({countries}) {
 	const [theme, setTheme] = useThemeContext()	
 
 	return (
-	<div className={theme ? 'dark' : 'light'}>
+	<div className={theme ? 'dark' : ''}>
 		<div  className=" bg-dark-gray dark:bg-very-dark-blue">
 			<SearchBar/>
 			<div className="grid grid-cols-1 place-items-center md:grid-cols-4 gap-14 p-12">
