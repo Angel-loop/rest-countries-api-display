@@ -10,7 +10,7 @@ export default function europe({countries}) {
     <div className={theme ? 'dark' : ''}>
       <div  className="bg-dark-gray dark:bg-very-dark-blue">
         <SearchBar/>
-        <div className="grid grid-cols-4 gap-14 p-12">
+        <div className="grid grid-cols-1 place-items-center md:grid-cols-4 gap-14 p-12">
           {countries.map(country => {
             return <Card 
             key={country.id}

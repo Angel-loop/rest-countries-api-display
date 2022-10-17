@@ -4,6 +4,7 @@ import { ThemeProvider} from '../context/theme'
 import NavBar from '../components/NavBar'
 import Loader from '../components/Loader'
 import { LoadingProvider } from '../context/load'
+import Footer from '../components/Footer'
 
 function MyApp({ Component, pageProps }) {
 	
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }) {
 			<NavBar/>
 			<Loader/>
 			<Component {...pageProps} />
+			<Footer/>
 		</LoadingProvider>
 
 	</ThemeProvider>

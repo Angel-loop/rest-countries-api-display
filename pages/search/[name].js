@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLoadContext } from '../../context/load'
 import { useThemeContext } from '../../context/theme'
 

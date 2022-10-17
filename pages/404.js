@@ -8,7 +8,7 @@ function Error() {
     const [loading,setLoading] = useLoadContext()
 
   return (
-    <div className={loading ? 'hidden' : ''}>
+    <div className={loading ? 'hidden h-full' : 'h-full'}>
       <div className={theme ? 'dark h-full' : 'h-full'}>
           <div className=" bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white grid grid-rows-2 place-content-center  h-full">
           <h1 className="text-3xl mt-auto">Sorry, the page you are looking for doesn't exit</h1>
