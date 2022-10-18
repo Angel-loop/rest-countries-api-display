@@ -6,7 +6,7 @@ import { useThemeContext } from '../../context/theme'
 
 function country({country}) {
 
-  const data = country[0]
+  const data = country[0]  
   //Gets the native Name
   const value = Object.keys(data.languages)
   const language = value[value.length - 1]

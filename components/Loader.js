@@ -7,8 +7,6 @@ import { useLoadContext } from '../context/load'
 const Spinner = ()=> {
   const [theme, setTheme] = useThemeContext()
 
-  console.log(theme)
-
   return (
 
       <div className={theme ? 'dark h-full z-50' : 'h-full z-50'}>
