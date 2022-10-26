@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ['upload.wikimedia.org', 'flagcdn.com'],
   },
+  staticPageGenerationTimeout: 12000,
 }
 
 module.exports = nextConfig

@@ -4,7 +4,7 @@ import { useThemeContext } from "../context/theme"
 
 
 
-export default function Home({countries}) {
+export default function Home({countries = null}) {
 	
 	const [theme, setTheme] = useThemeContext()	
 

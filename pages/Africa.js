@@ -2,7 +2,8 @@ import SearchBar from '../components/SearchBar'
 import Card from '../components/Card'
 import { useThemeContext } from '../context/theme'
 
-export default function america({countries}) {
+
+export default function africa({countries}) {
 
   const [theme, setTheme] = useThemeContext()
 
@@ -12,18 +13,20 @@ export default function america({countries}) {
         <SearchBar/>
         <div className="grid grid-cols-1 place-items-center md:grid-cols-4 gap-14 p-12">
           {countries.map(country => {
-            return <Card 
-            key={country.id}
-            {...country}/>
+              return <Card 
+              key={country.id}
+              {...country}/>
           })}
         </div>
       </div>
     </div>
   )
 }
+
 export async function getStaticProps(){
-	const res = await fetch('https://restcountries.com/v3.1/region/america')
-	const countries = await res.json()
+	
+  const req = await fetch('https://restcountries.com/v3.1/region/africa')
+	const countries = await req.json()
 
 	return {
 		props : {

@@ -1,20 +1,23 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { useLoadContext } from '../../context/load'
+import React from 'react'
+import {  useLoadContext } from '../../context/load'
 import { useThemeContext } from '../../context/theme'
 
 
-function country({country}) {
+function country({country = null}) {
+
 
   const data = country[0]  
   //Gets the native Name
-  const value = Object.keys(data.languages)
-  const language = value[value.length - 1]
-  const nativeName = data.name.nativeName
-  const nativeLanguage = data.languages
+  
+  const value = data.languages ? Object.keys(data.languages) : ''
+  const language = value === '' ? 'No official Language' : value[value.length - 1] 
+  const nativeName = data.name.nativeName 
+  const nativeLanguage = data.languages 
+  
 
-  const currencyName = Object.keys(data.currencies)
-  const currency = data.currencies
+  const currencyName = data.currencies ?  Object.keys(data.currencies) : ''
+  const currency = data.currencies ? data.currencies : ''
 
   const formatter = Intl.NumberFormat('en')
 
@@ -32,7 +35,6 @@ function country({country}) {
       const name = res.name.common
       router.push(`/search?country=${name.toLowerCase()}`)
     }
-
   }
   
 
@@ -56,7 +58,7 @@ function country({country}) {
               <section className='flex flex-col gap-2'>
                 <h1 className='text-4xl font-extrabold mb-8'>{data.name.common}</h1>
                 <p className='font-semibold mb-2'>Native Name: <span className='font-extralight'>
-                  {nativeName[language].official}
+                  {data.languages ? nativeName[language].official : "No native names"}
                 </span></p>
                 <p className='font-semibold mb-2'>Population: <span className='font-extralight'>
                   {formatter.format(data.population)}
@@ -65,20 +67,24 @@ function country({country}) {
                   {data.region}
                 </span></p>
                 <p className='font-semibold mb-2'>Sub Region: <span className='font-extralight'>
-                  {data.subregion}
+                  {data.subregion ? data.subregion : 'No subregion'}
                 </span></p>
                 <p className='font-semibold mb-4'>Capital: <span className='font-extralight'>
-                  {data.capital}
+                  {data.capital ? data.capital : "No capital"}
                 </span></p>
               </section>
 
               <section className='flex flex-col gap-2 md:mt-28 '>
                 <p className='font-semibold mb-2'>Currencies: <span className='font-extralight'>
-                      {currency[currencyName].name}
+                      {!data.currencies ? 'No official currency' : 
+                      !currencyName > 1 ? currency[currencyName].name :
+                      currencyName.map((name) => {
+                        return <div>{currency[name].name}<br></br> </div>
+                      } )}
                   </span>
                 </p>
                 <p className='font-semibold mb-2'> Languages: 
-                  <span className='font-extralight'> {nativeLanguage[language]}</span>
+                  <span className='font-extralight'> {data.languages ? nativeLanguage[language] : 'No official Language'}</span>
                 </p>
                 <p className='font-semibold mb-2'> Top level domain: 
                   <span className='font-extralight'> {data.tld}</span>
@@ -89,13 +95,13 @@ function country({country}) {
               <section>
                 <p className='text-1xl font-bold mb-4'>Border countries: </p>
                 <div className='grid grid-cols-2 md:grid-cols-4 w-max gap-4'>
-                  {data.borders && data.borders.map((item, index) =>{
+                  {data.borders ? data.borders.map((item, index) =>{
                     return (
                       <button onClick={() => handleClick(item)} key={index} className='bg-white dark:bg-dark-blue transition ease-in-out hover:scale-110 duration-500 px-8 py-1 shadow-lg'>
                         <p className='font-semibold text-base'>{item}</p>
                       </button>
                     )
-                  } )}
+                  } ) : 'No border countries'}
                 </div>
               </section>
 
@@ -107,7 +113,9 @@ function country({country}) {
       </div>
     </div>
   )
+  
 }
+
 
 export default country
 

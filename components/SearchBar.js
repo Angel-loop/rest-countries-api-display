@@ -69,7 +69,7 @@ export default function SearchBar() {
                 <Menu.Item>
                   {({ active }) => (
                     <button
-                      onClick={()=> handleNav('africa')}
+                      onClick={()=> handleNav('Africa')}
                       className={`${
                         active ? 'bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white' : 'text-gray-900'
                       } group flex w-full items-center rounded-md px-8 py-2 text-sm `}
@@ -92,20 +92,18 @@ export default function SearchBar() {
                 <Menu.Item>
                   {({ active }) => (
                     <button
-                      onClick={()=> handleNav('america')}
+                      onClick={()=> handleNav('America')}
                       className={`${
                         active ? 'bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white' : ''
                       } group flex w-full items-center rounded-md px-8 py-2 text-sm `}
                   >
                       {active ? (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >America</div>
                       ) : (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >America</div>
@@ -117,20 +115,18 @@ export default function SearchBar() {
                 <Menu.Item>
                   {({ active }) => (
                     <button
-                      onClick={()=> handleNav('asia')}
+                      onClick={()=> handleNav('Asia')}
                       className={`${
                         active ? 'bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white' : 'text-gray-900'
                       } group flex w-full items-center rounded-md px-8 py-2 text-sm `}
                   >
                       {active ? (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >Asia</div>
                       ) : (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >Asia</div>
@@ -142,20 +138,18 @@ export default function SearchBar() {
                 <Menu.Item>
                   {({ active }) => (
                     <button
-                      onClick={()=> handleNav('europe')}
+                      onClick={()=> handleNav('Europe')}
                       className={`${
                         active ? 'bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white' : 'text-gray-900'
                       } group flex w-full items-center rounded-md px-8 py-2 text-sm `}
                   >
                       {active ? (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >Europe</div>
                       ) : (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >Europe</div>
@@ -167,20 +161,18 @@ export default function SearchBar() {
                 <Menu.Item>
                   {({ active }) => (
                     <button
-                      onClick={()=> handleNav('oceania')}
+                      onClick={()=> handleNav('Oceania')}
                       className={`${
                         active ? 'bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white' : 'text-gray-900'
                       } group flex w-full items-center rounded-md px-8 py-2 text-sm `}
                   >
                       {active ? (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >Oceania</div>
                       ) : (
-                        <div
-                          div
+                        <div 
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >Oceania</div>
@@ -199,13 +191,11 @@ export default function SearchBar() {
                   >
                       {active ? (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >None</div>
                       ) : (
                         <div
-                          div
                           className="mr-2 h-5 w-5"
                           aria-hidden="true"
                         >None</div>

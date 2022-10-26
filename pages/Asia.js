@@ -2,7 +2,7 @@ import SearchBar from '../components/SearchBar'
 import Card from '../components/Card'
 import { useThemeContext } from '../context/theme'
 
-export default function asia({countries}) {
+export default function asia({countries = null}) {
 
   const [theme, setTheme] = useThemeContext()
 
@@ -23,8 +23,9 @@ export default function asia({countries}) {
 }
 
 export async function getStaticProps(){
-	const res = await fetch('https://restcountries.com/v3.1/region/asia')
-	const countries = await res.json()
+
+  const req = await fetch('https://restcountries.com/v3.1/region/asia')
+	const countries = await req.json()
 
 	return {
 		props : {
