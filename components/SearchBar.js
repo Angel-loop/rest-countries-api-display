@@ -32,7 +32,7 @@ export default function SearchBar() {
   return (
     <div className={loading ? 'hidden' : ''}>
         <div className={theme ? "dark p-12 grid-cols-1 gap-12 md:flex md:justify-between md:flex-row z-10" : "p-12 grid-cols-1 gap-12 md:flex md:justify-between md:flex-row z-10"}>
-          <form className="w-full md:w-1/3 h-12 px-4 py-1 rounded-md bg-white dark:bg-dark-blue text-dark-blue-lm dark:text-white  dark:shadow-dark-blue-lm shadow-md flex items-center mb-4">
+          <form className="w-full md:w-1/2 lg:w-1/3 h-12 px-4 py-1 rounded-md bg-white dark:bg-dark-blue text-dark-blue-lm dark:text-white  dark:shadow-dark-blue-lm shadow-md flex items-center mb-4">
 
               <button className="mx-2" type="submit" onClick={handleClick}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={20} height={20} className="dark:fill-white">
@@ -46,11 +46,11 @@ export default function SearchBar() {
 
 
           <Menu as="div" className="z-10 relative inline-block text-left text-dark-blue-lm dark:text-white bg-white dark:bg-dark-blue
-          rounded-md dark:shadow-dark-blue-lm shadow-md w-full md:w-1/6 md:h-12">
+          rounded-md dark:shadow-dark-blue-lm shadow-md w-full md:w-1/2 lg:w-1/5 md:h-12">
           <div>
             <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-dark-blue-lm dark:text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 text-center">
               Filter By Region 
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={15} height={15} className="dark:first-letter:fill-white ml-8">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={15} height={15} className="dark:fill-white ml-8">
               <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
               </svg>
             </Menu.Button>

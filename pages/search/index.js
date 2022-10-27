@@ -42,9 +42,6 @@ function index({data}) {
   </div>
 
   //if the server responds with a 200 status sets display to render the countries
-  
-
-
   if(!data.message){
     display = data.map(country => {
       return <Card 
@@ -56,9 +53,9 @@ function index({data}) {
   }
 
   return (
-    <div className={ theme ?  'dark h-full' : 'h-full'}>
-     <div className={loading ? 'hidden h-full' : 'h-full'}>
-        <div className=" bg-dark-gray dark:bg-very-dark-blue h-full">
+    <div className={ theme ?  'dark min-h-full' : 'min-h-full'}>
+     <div className={loading ? 'hidden min-h-full' : 'min-h-full'}>
+        <div className=" bg-dark-gray dark:bg-very-dark-blue min-h-full">
           <div className='p-12'>
             <form className="w-full md:w-1/3 h-12 px-4 py-1 rounded-md bg-white dark:bg-dark-blue text-dark-blue-lm dark:text-white dark:shadow-dark-blue-lm shadow-md flex items-center">
               <button className="mx-2" type="submit" onClick={handleClick}>
@@ -70,7 +67,7 @@ function index({data}) {
             </form>
           </div>
 
-          <div className={data.message ? 'grid place-items-centerp-8' : "grid grid-cols-4 gap-14 p-12"}>
+          <div className={data.message ? 'grid place-items-center p-8 h-full' : "grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-14 p-12"}>
               {display}
           </div>
         </div>
