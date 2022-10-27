@@ -40,9 +40,9 @@ function country({country = null}) {
 
 
   return (
-    <div className={loading ? 'hidden' : ''}>
-      <div className={theme ? 'dark' : ''}>
-        <div className=' bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white p-8 md:p-16'>
+    <div className={loading ? 'hidden' : 'h-full'}>
+      <div className={theme ? 'dark h-full' : 'h-full'}>
+        <div className=' bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white p-8 md:p-16 h-full'>
           <button onClick={() => router.back()}>
             <a href='/' className=' flex place-content-center place-items-center mb-16 bg-white dark:bg-dark-blue rounded-md w-32 p-2 dark:shadow-dark-blue-lm shadow-md transition ease-in-out hover:scale-110'>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width={15} height={15} className='dark:fill-white mr-2'>
