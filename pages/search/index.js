@@ -53,9 +53,9 @@ function index({data}) {
   }
 
   return (
-    <div className={ theme ?  'dark min-h-full' : 'min-h-full'}>
-     <div className={loading ? 'hidden min-h-full' : 'min-h-full'}>
-        <div className=" bg-dark-gray dark:bg-very-dark-blue min-h-full">
+    <div className={ theme ?  'dark h-full' : 'h-full'}>
+     <div className={loading ? 'hidden' : 'h-full'}>
+        <div className=" bg-dark-gray dark:bg-very-dark-blue h-full">
           <div className='p-12'>
             <form className="w-full md:w-1/3 h-12 px-4 py-1 rounded-md bg-white dark:bg-dark-blue text-dark-blue-lm dark:text-white dark:shadow-dark-blue-lm shadow-md flex items-center">
               <button className="mx-2" type="submit" onClick={handleClick}>
