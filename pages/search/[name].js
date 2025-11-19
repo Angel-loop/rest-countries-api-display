@@ -40,8 +40,8 @@ function country({country = null}) {
 
 
   return (
-    <div className={loading ? 'hidden' : 'h-full'}>
-      <div className={theme ? 'dark h-full' : 'h-full'}>
+    <div className={loading ? 'hidden' : 'h-fit'}>
+      <div className={theme ? 'dark h-fit' : 'h-fit'}>
         <div className=' bg-dark-gray dark:bg-very-dark-blue text-dark-blue-lm dark:text-white p-8 md:p-16 h-full'>
           <button onClick={() => router.back()}>
             <a href='/' className=' flex place-content-center place-items-center mb-16 bg-white dark:bg-dark-blue rounded-md w-32 p-2 dark:shadow-dark-blue-lm shadow-md transition ease-in-out hover:scale-110'>
@@ -94,7 +94,7 @@ function country({country = null}) {
 
               <section>
                 <p className='text-1xl font-bold mb-4'>Border countries: </p>
-                <div className='grid grid-cols-2 md:grid-cols-4 w-max gap-4'>
+                <div className='grid grid-rows-2 md:grid-cols-3 w-max gap-4'>
                   {data.borders ? data.borders.map((item, index) =>{
                     return (
                       <button onClick={() => handleClick(item)} key={index} className='bg-white dark:bg-dark-blue transition ease-in-out hover:scale-110 duration-500 px-8 py-1 shadow-lg'>
